@@ -26,6 +26,34 @@ public class Main {
         System.out.println("The 8 teams are: "+Arrays.toString(names)); //confirms and displays the team names
 
 
+        //Part 2
+        ArrayList <String> group1 = new ArrayList <>();
+        ArrayList <String> group2 = new ArrayList <>();
+
+        ArrayList <Integer> nums = new ArrayList <> ();
+
+        for (int i = 0; i <= 8; i++){
+            if (i == 7)
+                i++;
+            int counter = 0;
+
+            nums.add(i, (int) (Math.random() * (8) + 0));
+            for (int j = 0; j < i; j++){
+                if(nums.get(i) == nums.get(j))
+                    counter++;
+            }
+            if (counter == 0){ //to use all number from 0-7 once.
+                if (i < 4)
+                    group1.add(names[nums.get(i)]); //adds the first 4 teams picked randomly,to team 1.
+                else if (i > 3)
+                    group2.add(names[nums.get(i)]);
+            }
+            else
+                i--;
+        }
+
+        //matches
+
 
 
         sc.close();
