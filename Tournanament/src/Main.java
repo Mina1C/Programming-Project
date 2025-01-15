@@ -45,14 +45,73 @@ public class Main {
             if (counter == 0){ //to use all number from 0-7 once.
                 if (i < 4)
                     group1.add(names[nums.get(i)]); //adds the first 4 teams picked randomly,to team 1.
-                else if (i > 3)
+                else
                     group2.add(names[nums.get(i)]);
             }
             else
                 i--;
         }
 
+        System.out.println("Group 1: " +group1 +"\nGroup 2: "+group2);
+
         //matches
+
+        int[] scores = new int[8];
+        int[] goals = new int[8];
+        int[] received = new int[8];
+
+        System.out.println("Goals: "+goals);
+
+        for (int i = 0; i < 8; i++){
+
+            for (int j = i+1; j < 4; j++){
+                int goal1 = (((int)(Math.random()*10 +0)));
+                int goal2 = ((int)(Math.random()*10 +0));
+                goals[i] += goal1;
+                goals[j] += goal2;
+
+                System.out.println(group1.get(i)+" vs "+group1.get(j)+"\n"+goals[i]+":"+goals[j]);
+
+                if(goal1 > goal2)
+                    scores[i] += 3;
+                else if (goals[i] == goals[j]){
+                    scores[i] += 1;
+                    scores[j] += 1;
+                }
+                else if (goal1 < goal2){
+                    scores[j] += 3;
+                    received[i] += 1;
+                }
+            }
+            for (int j = i+1; j > 4 && j < 8; j++){
+                int goal1 = (((int)(Math.random()*10 +0)));
+                int goal2 = ((int)(Math.random()*10 +0));
+                goals[i] += goal1;
+                goals[j] += goal2;
+
+                System.out.println(group2.get(i-4)+" vs "+group2.get(j-4)+"\n"+goals[i]+":"+goals[j]);
+
+                if(goal1 > goal2)
+                    scores[i] += 3;
+                else if (goal1 == goal2){
+                    scores[i] += 1;
+                    scores[j] += 1;
+                }
+                else if (goal1 < goal2){
+                    scores[j] += 3;
+                    received[i] += 1;
+                }
+            }
+
+        }
+        for (int i = 0; i < 8; i++){
+
+            System.out.println(names[i]+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
+        }
+
+
+
+
 
 
 
