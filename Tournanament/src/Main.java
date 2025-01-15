@@ -60,15 +60,15 @@ public class Main {
         int[] goals = new int[8];
         int[] received = new int[8];
 
-        System.out.println("Goals: "+goals);
 
         for (int i = 0; i < 8; i++){
 
             for (int j = i+1; j < 4; j++){
-                int goal1 = (((int)(Math.random()*10 +0)));
-                int goal2 = ((int)(Math.random()*10 +0));
+                int goal1 = (int)(Math.random()*10 +0);
+                int goal2 = (int)(Math.random()*10 +0);
                 goals[i] += goal1;
                 goals[j] += goal2;
+                System.out.println("Goals"+Arrays.toString(goals));
 
                 System.out.println(group1.get(i)+" vs "+group1.get(j)+"\n"+goals[i]+":"+goals[j]);
 
@@ -84,10 +84,13 @@ public class Main {
                 }
             }
             for (int j = i+1; j > 4 && j < 8; j++){
-                int goal1 = (((int)(Math.random()*10 +0)));
-                int goal2 = ((int)(Math.random()*10 +0));
+
+                int goal1 = (int)(Math.random()*10 +0);
+                int goal2 = (int)(Math.random()*10 +0);
                 goals[i] += goal1;
                 goals[j] += goal2;
+
+                System.out.println("Goals"+Arrays.toString(goals));
 
                 System.out.println(group2.get(i-4)+" vs "+group2.get(j-4)+"\n"+goals[i]+":"+goals[j]);
 
@@ -102,11 +105,13 @@ public class Main {
                     received[i] += 1;
                 }
             }
-
         }
-        for (int i = 0; i < 8; i++){
 
-            System.out.println(names[i]+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
+        for (int i = 0; i < 4; i++){
+
+            System.out.println(group1.get(i)+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
+            System.out.println(group2.get(i)+":\nTotal score: "+scores[i+4]+"\nGoals scored: "+goals[i+4]+"\nGoals received: "+received[i+4]);
+
         }
 
 
