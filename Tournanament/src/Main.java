@@ -37,7 +37,10 @@ public class Main {
                 i++;
             int counter = 0;
 
-            nums.add(i, (int) (Math.random() * (8) + 0));
+            nums.add(i, (int) (Math.random() * (8) + 0)); //I know the 8 has to be 7 since it is max-min(7-0), but the code doesn't generate 7 leaving the last team.
+            if(nums.get(i) == 8) //To prevent generating 8 and getting an "Index Out of Bounds" warning.
+                nums.set(i, 7);
+
             for (int j = 0; j < i; j++){
                 if(nums.get(i) == nums.get(j))
                     counter++;
@@ -107,12 +110,24 @@ public class Main {
             }
         }
 
+        String first = "";
+        String second = "";
+
+
         for (int i = 0; i < 4; i++){
 
             System.out.println(group1.get(i)+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
             System.out.println(group2.get(i)+":\nTotal score: "+scores[i+4]+"\nGoals scored: "+goals[i+4]+"\nGoals received: "+received[i+4]);
 
+            for(int j = i+1; j < 4; j++){
+                if (scores[i] > scores[j]){
+                    first = (group1.get(i));
+                }
+                else
+                    first = (group1.get(j));
+            }
         }
+        System.out.println("First "+first);
 
 
 
