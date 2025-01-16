@@ -37,9 +37,7 @@ public class Main {
                 i++;
             int counter = 0;
 
-            nums.add(i, (int) (Math.random() * (8) + 0)); //I know the 8 has to be 7 since it is max-min(7-0), but the code doesn't generate 7 leaving the last team.
-            if(nums.get(i) == 8) //To prevent generating 8 and getting an "Index Out of Bounds" warning.
-                nums.set(i, 7);
+            nums.add(i, (int) (Math.random() * (8) +0));
 
             for (int j = 0; j < i; j++){
                 if(nums.get(i) == nums.get(j))
@@ -71,19 +69,26 @@ public class Main {
                 int goal2 = (int)(Math.random()*10 +0);
                 goals[i] += goal1;
                 goals[j] += goal2;
-                System.out.println("Goals"+Arrays.toString(goals));
 
-                System.out.println(group1.get(i)+" vs "+group1.get(j)+"\n"+goals[i]+":"+goals[j]);
+                System.out.println(group1.get(i)+" vs "+group1.get(j)+"\n"+goal1+":"+goal2);
 
-                if(goal1 > goal2)
+                System.out.println("Goals: "+Arrays.toString(goals));
+
+                if (goal1 > goal2) {
                     scores[i] += 3;
-                else if (goals[i] == goals[j]){
+                    received[i] += goal2;
+                    received[j] += goal1;
+                }
+                else if (goal1 == goal2){
                     scores[i] += 1;
                     scores[j] += 1;
+                    received[i] += goal2;
+                    received[j] += goal1;
                 }
                 else if (goal1 < goal2){
                     scores[j] += 3;
-                    received[i] += 1;
+                    received[i] += goal2 - goal1;
+                    received[j] += goal1;
                 }
             }
             for (int j = i+1; j > 4 && j < 8; j++){
@@ -93,19 +98,25 @@ public class Main {
                 goals[i] += goal1;
                 goals[j] += goal2;
 
-                System.out.println("Goals"+Arrays.toString(goals));
+                System.out.println(group2.get(i-4)+" vs "+group2.get(j-4)+"\n"+goal1+":"+goal2);
 
-                System.out.println(group2.get(i-4)+" vs "+group2.get(j-4)+"\n"+goals[i]+":"+goals[j]);
+                System.out.println("Goals: "+Arrays.toString(goals));
 
-                if(goal1 > goal2)
+                if (goal1 > goal2) {
                     scores[i] += 3;
+                    received[i] += goal2;
+                    received[j] += goal1;
+                }
                 else if (goal1 == goal2){
                     scores[i] += 1;
                     scores[j] += 1;
+                    received[i] += goal2;
+                    received[j] += goal1;
                 }
                 else if (goal1 < goal2){
                     scores[j] += 3;
-                    received[i] += 1;
+                    received[i] += goal2 - goal1;
+                    received[j] += goal1;
                 }
             }
         }
@@ -123,9 +134,7 @@ public class Main {
                 if (scores[i] > scores[j]){
                     first = (group1.get(i));
                 }
-                else
-                    first = (group1.get(j));
-            }
+
         }
         System.out.println("First "+first);
 
