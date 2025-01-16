@@ -87,7 +87,7 @@ public class Main {
                 }
                 else if (goal1 < goal2){
                     scores[j] += 3;
-                    received[i] += goal2 - goal1;
+                    received[i] += goal2;
                     received[j] += goal1;
                 }
             }
@@ -123,20 +123,49 @@ public class Main {
 
         String first = "";
         String second = "";
-
+        String first2 = ""; //first team in group 2
+        String second2 = ""; //second team in group 2
 
         for (int i = 0; i < 4; i++){
 
             System.out.println(group1.get(i)+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
             System.out.println(group2.get(i)+":\nTotal score: "+scores[i+4]+"\nGoals scored: "+goals[i+4]+"\nGoals received: "+received[i+4]);
+            for(int j = 1; j+i < 4; j++){
 
-            for(int j = i+1; j < 4; j++){
-                if (scores[i] > scores[j]){
+                if (scores[i] > scores[j]) //finding the first scoring team in group 1
                     first = (group1.get(i));
-                }
+                else
+                    first = group1.get(j);
 
+                if (scores[i+4] > scores[j+4]) //finding the first scoring team in group 2
+                    first2 = (group2.get(i));
+                else
+                    first2 = group2.get(j);
+            }
         }
-        System.out.println("First "+first);
+
+        for (int i = 0; i < 4; i++){
+            for(int j = 1; j+i < 4; j++){
+
+                if (scores[i] > scores[j] && !group1.get(i).equals(first)) //finding the second scoring team in group 1
+                    second = (group1.get(i));
+                else if (!group1.get(j).equals(first))
+                    second = group1.get(j);
+                else
+                    second = group1.get(i); //just in case the largest number is compared with a lower one
+
+                if (scores[i+4] > scores[j+4] && !group2.get(i).equals(first2)) //finding the second scoring team in group 2
+                    second2 = (group2.get(i));
+                else if (!group2.get(j).equals(first2))
+                    second2 = group2.get(j);
+                else
+                    second2 = group2.get(i); //just in case the largest number is compared with a lower one
+
+            }
+        }
+
+        System.out.println("\nThe TEAMS Progressing to Playoff!!!\nFirst team in group 1: "+first+"\nThe second team in group 1: "+second+"\nFirst team in group 2: "+first2+"\nThe second team in group 2: "+second2);
+
 
 
 
