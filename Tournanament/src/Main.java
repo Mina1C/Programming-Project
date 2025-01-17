@@ -174,7 +174,7 @@ public class Main {
 
         //If the teams are tied
         if(semi1_1 == semi2_2){
-            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 3 or 8");
+            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 3 or 8 to break the tie:");
             int tieBreaker = sc.nextInt();
             if(tieBreaker == 8)
                 semi2_2 = 11;
@@ -182,7 +182,7 @@ public class Main {
                 semi1_1 = 11;
         }
         if(semi2_1 == semi1_2){
-            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 1 or 4");
+            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 1 or 4 to break the tie:");
             int tieBreaker = sc.nextInt();
             if(tieBreaker == 1)
                 semi2_2 = 11;
