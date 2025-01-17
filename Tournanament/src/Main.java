@@ -164,7 +164,68 @@ public class Main {
         System.out.println("First team in group 2: " + first2+"\nSecond team in group 2: " + second2);
 
 
+        int semi1_1 = (int)(Math.random()*10+0); //semi scores for teams. group number then the rank. group 1 with 2nd team = 1_2
+        int semi1_2 = (int)(Math.random()*10+0);
+        int semi2_1 = (int)(Math.random()*10+0);
+        int semi2_2 = (int)(Math.random()*10+0);
 
+        System.out.println(first+" vs. "+second2+"\n"+semi1_1+":"+semi2_2);
+        System.out.println(first2+" vs. "+second+"\n"+semi2_1+":"+semi1_2);
+
+        //If the teams are tied
+        if(semi1_1 == semi2_2){
+            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 3 or 8");
+            int tieBreaker = sc.nextInt();
+            if(tieBreaker == 8)
+                semi2_2 = 11;
+            else
+                semi1_1 = 11;
+        }
+        if(semi2_1 == semi1_2){
+            System.out.println("The teams are tied, we are proceeding to penalties.\nEnter 1 or 4");
+            int tieBreaker = sc.nextInt();
+            if(tieBreaker == 1)
+                semi2_2 = 11;
+            else
+                semi1_1 = 11;
+        }
+
+        if (semi1_1 < semi2_2 && semi2_1 < semi1_2){ //if the top scorers lose
+            int final2_2 = (int)(Math.random()*10+0);
+            int final1_2 = (int)(Math.random()*10+0);
+
+            System.out.println(second2+" vs "+second+"\n"+final2_2+":"+final1_2);
+
+            if (final2_2 > final1_2){                   // if group 2's second scorer wins
+                System.out.println(second2+" is the winner of this tournament!!!!");
+            }
+            else {                                      // if group 1's second scorer wins
+                System.out.println(second + " is the winner of this tournament!!!");
+            }
+        }
+
+        else if (semi1_1 < semi2_2) {   //group 2 top scorer and second scorer wins. But they don't compete.
+            System.out.println(first2 + " is the winner of this tournament!!!!");
+        }
+        else if (semi1_1 > semi2_2 && semi2_1 > semi1_2){  //if the top scorers win
+            int final2_1 = (int)(Math.random()*10+0);
+            int final1_1 = (int)(Math.random()*10+0);
+            System.out.println(first2+" vs "+first+"\n"+final2_1+":"+final1_1);
+
+            if (final2_1 > final1_1){                //if group 2's top scorer wins
+                System.out.println(first2 + " is the winner of this tournament!!!!");
+            }
+            else {                                  //if group 1's top scorer wins
+                System.out.println(first + " is the winner of this tournament!!!!");
+            }
+        }
+
+        else if (semi1_1 > semi2_2){   //group 1 top scorer and second scorer wins. But they don't compete.
+            System.out.println(first + " is the winner of this tournament!!!!");
+        }
+
+        System.out.println("Do you want to see the final's details?"); //for match summary
+        String response = "".toLowerCase();
 
 
 
