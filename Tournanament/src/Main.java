@@ -126,47 +126,42 @@ public class Main {
         String first2 = ""; //first team in group 2
         String second2 = ""; //second team in group 2
 
-        for (int i = 0; i < 4; i++){
+        int topScore1 = -1; //-1 to make sure this field isn't left empty, if the team that is being compared has 0 scores.
+        int secondTopScore1 = -1; // For Group 1 scores
+        int topScore2 = -1;
+        int secondTopScore2 = -1; // For Group 2 scores
+
+        for (int i = 0; i < 4; i++){ //to show team standings
 
             System.out.println(group1.get(i)+":\nTotal score: "+scores[i]+"\nGoals scored: "+goals[i]+"\nGoals received: "+received[i]);
             System.out.println(group2.get(i)+":\nTotal score: "+scores[i+4]+"\nGoals scored: "+goals[i+4]+"\nGoals received: "+received[i+4]);
-            for(int j = 1; j+i < 4; j++){
 
-                if (scores[i] > scores[j]) //finding the first scoring team in group 1
-                    first = (group1.get(i));
-                else
-                    first = group1.get(j);
+            // Finding the top two teams in Group 1
+            if (scores[i] > topScore1) {
+                second = first;       // Move current first to second
+                secondTopScore1 = topScore1;
+                first = group1.get(i); // Update first team
+                topScore1 = scores[i];
+            } else if (scores[i] > secondTopScore1) {
+                second = group1.get(i); // Update second team
+                secondTopScore1 = scores[i];
+            }
 
-                if (scores[i+4] > scores[j+4]) //finding the first scoring team in group 2
-                    first2 = (group2.get(i));
-                else
-                    first2 = group2.get(j);
+            // Find the top two teams in Group 2
+            if (scores[i + 4] > topScore2) {
+                second2 = first2;         // Move current first to second
+                secondTopScore2 = topScore2;
+                first2 = group2.get(i);   // Update first team
+                topScore2 = scores[i + 4];
+            } else if (scores[i + 4] > secondTopScore2) {
+                second2 = group2.get(i);  // Update second team
+                secondTopScore2 = scores[i + 4];
             }
         }
 
-        for (int i = 0; i < 4; i++){
-            for(int j = 1; j+i < 4; j++){
-
-                if (scores[i] > scores[j] && !group1.get(i).equals(first)) //finding the second scoring team in group 1
-                    second = (group1.get(i));
-                else if (!group1.get(j).equals(first))
-                    second = group1.get(j);
-                else
-                    second = group1.get(i); //just in case the largest number is compared with a lower one
-
-                if (scores[i+4] > scores[j+4] && !group2.get(i).equals(first2)) //finding the second scoring team in group 2
-                    second2 = (group2.get(i));
-                else if (!group2.get(j).equals(first2))
-                    second2 = group2.get(j);
-                else
-                    second2 = group2.get(i); //just in case the largest number is compared with a lower one
-
-            }
-        }
-
-        System.out.println("\nThe TEAMS Progressing to Playoff!!!\nFirst team in group 1: "+first+"\nThe second team in group 1: "+second+"\nFirst team in group 2: "+first2+"\nThe second team in group 2: "+second2);
-
-
+        System.out.println("\nThe TEAMS Progressing to Playoff!!!");
+        System.out.println("First team in group 1: " + first+"\nSecond team in group 1: " + second);
+        System.out.println("First team in group 2: " + first2+"\nSecond team in group 2: " + second2);
 
 
 
